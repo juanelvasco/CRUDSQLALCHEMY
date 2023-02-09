@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-md-5">
+        {% include 'partials/_messages.html' %}
+
+        {% include 'partials/_vehiculosForm.html' %}
+        </div>
+
+         <div class="col-md-7">
+        {% for vehiculo in vehiculos %}
+        <div class="card mb-1 text-white bg-dark">
+            <div class="card-body py-2 px-3">
+                <div class="d-flex justify-content-between">
+                    <h5>{{vehiculo.patente}}</h5>
+                    <div>
+                        <a href="{{url_for('vehiculos.update_vehiculo', id=vehiculo.id)}}"
+                            class="btn bg-black text-white btn-sm rounded-1">Editar</a>
+                        <a href="{{url_for('vehiculos.delete_vehiculo', id=vehiculo.id)}}"
+                            class="btn btn-danger btn-sm rounded-0">Borrar</a>
+                    </div>
+                </div>
+                <p class="card-text">{{vehiculo.marca}}</p>
+                <p class="card-text">{{vehiculo.modelo}}</p>
+                <p class="card-text">{{vehiculo.anio}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        
+    </div>
+    
+
+{% endblock %}
